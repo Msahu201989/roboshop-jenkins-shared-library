@@ -3,17 +3,13 @@ def call() {
 
         common.codeQuality()
 
-//            stage('Style Checks') {
-//                when {
-//                    anyOf {
-//                        branch 'main'
-//                        tag "*"
-//                    }
-//                }
-//                steps{
-//                    echo 'code Quality'
-//                }
-//            }
+           if ( branch == "main" || tag ==~ "*" ) {
+            stage('Style Checks') {
+                echo 'code Quality'
+                }
+            }
+        }
+
 //
 //            stage('Unit Tests'){
 //                when {
