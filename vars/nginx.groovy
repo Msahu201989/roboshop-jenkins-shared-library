@@ -1,11 +1,16 @@
-def call() {
+def call(){
     pipeline {
 
         agent any
 
         stages {
 
-        common.codeQuality()
+            stage('code Quality') {
+                steps{
+                    echo 'code Quality'
+                    sh 'env'
+                }
+            }
 
             stage('Style Checks') {
                 when {
@@ -31,12 +36,6 @@ def call() {
                 }
             }
 
-            stage('Download Dependencies') {
-                when { tag "*" }
-                steps {
-                    echo 'Download Dependencies'
-                }
-            }
 
             stage('Prepare Artifact') {
                 when { tag "*" }

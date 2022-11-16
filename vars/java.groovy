@@ -1,11 +1,23 @@
-def call() {
+def call(){
     pipeline {
 
         agent any
 
         stages {
 
-        common.codeQuality()
+            stage('compile code'){
+                steps{
+                    echo 'compile code'
+                    sh 'env'
+                }
+            }
+
+            stage('code Quality') {
+                steps{
+                    echo 'code Quality'
+                    sh 'env'
+                }
+            }
 
             stage('Style Checks') {
                 when {
@@ -15,7 +27,7 @@ def call() {
                     }
                 }
                 steps{
-                    echo 'code Quality'
+                    echo 'style checks'
                 }
             }
 
@@ -31,7 +43,7 @@ def call() {
                 }
             }
 
-            stage('Download Dependencies') {
+            stage('Build Package') {
                 when { tag "*" }
                 steps {
                     echo 'Download Dependencies'
