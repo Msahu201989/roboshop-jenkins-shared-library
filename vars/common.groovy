@@ -1,12 +1,11 @@
 def codeQuality() {
-    stage('code Quality') {
+    stage('Code Quality') {
        echo 'code Quality'
-            sh 'env'
         }
     }
 
 def codeChecks() {
-    if ( BRANCH_NAME == "main" || tag ==~ ".*" ) {
+    if ( BRANCH_NAME == "main" || TAG_NAME ==~ ".*" ) {
         stage('Style Checks') {
             echo 'Style Checks'
         }
