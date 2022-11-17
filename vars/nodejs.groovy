@@ -6,7 +6,7 @@ def call() {
 
            if ( BRANCH_NAME == "main" || tag ==~ "*" ) {
 //            stage('Style Checks') {
-//                echo 'code Quality'
+//                echo 'Style Checks'
 //                }
 //            }
 //        }
