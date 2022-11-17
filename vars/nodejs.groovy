@@ -41,7 +41,7 @@ def call() {
 //            stage('Publish Artifact') {
 //                when { tag "*" }
 //                steps {
-//                    echo 'Publish Artifact'
+//                    echo 'Publishh Artifact'
 //                }
 //            }
 
