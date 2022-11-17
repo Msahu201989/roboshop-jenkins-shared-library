@@ -6,7 +6,7 @@ def codeQuality() {
     }
 
 def codeChecks() {
-    if (BRANCH_NAME == "main" || tag ==~ ".*") {
+    if ( BRANCH_NAME == "main" || tag ==~ ".*" ) {
         stage('Style Checks') {
             echo 'Style Checks'
         }
