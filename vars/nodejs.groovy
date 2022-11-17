@@ -5,12 +5,12 @@ def call() {
         }
 
 
-      common.codeQuality()
-      common.codeChecks()
-      common.artifacts()
+        common.codeQuality()
+        common.codeChecks()
+        common.artifacts()
 
-       }
+    }
 
 
-        }
+   }
 
