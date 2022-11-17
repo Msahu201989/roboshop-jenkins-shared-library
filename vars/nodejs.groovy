@@ -5,11 +5,11 @@ def call() {
         common.codeQuality()
 
         if (BRANCH_NAME == "main" || tag ==~ "*") {
-//            stage('Style Checks') {
-//                echo 'Style Checks'
-//                }
-//            }
-//        }
+            stage('Style Checks') {
+                echo 'Style Checks'
+                }
+            }
+       }
 //
 //
 //            stage('Unit Tests'){
