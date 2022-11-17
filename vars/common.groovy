@@ -23,27 +23,13 @@ def artifacts() {
         stage('Download Dependencies') {
             echo 'Download Dependencies'
         }
-        
-    }
-//            stage('Download Dependencies') {
-//                when { tag "*" }
-//                steps {
-//                    echo 'Download Dependencies'
-//                }
-//            }
-//
-//            stage('Prepare Artifact') {
-//                when { tag "*" }
-//                steps {
-//                    echo 'Prepare Artifact'
-//                }
-//            }
-//
-//            stage('Publish Artifact') {
-//                when { tag "*" }
-//                steps {
-//                    echo 'Publishh Artifact'
-//                }
+       stage('Prepare  Artifacts') {
+           echo 'Prepare Artifacts'
+       }
 
-//            }
-}
+        stage('Publish Artifacts') {
+         echo 'Publish Artifacts'
+        }
+        }
+    }
+
