@@ -18,7 +18,7 @@ def codeChecks() {
 }
 
 def artifacts() {
-    if (TAG_NAME == ~ ".*") {
+    if ( TAG_NAME == ~ ".*" ) {
 
         stage('Download Dependencies') {
             echo 'Download Dependencies'
