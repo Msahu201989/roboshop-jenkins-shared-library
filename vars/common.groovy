@@ -1,9 +1,12 @@
 def codeQuality() {
     stage('Code Quality') {
-       echo 'code Quality'
-        sh 'env'
-     }
+        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'sonarPass', usernameVariable: 'sonarUser')]) {
+            sh '''
+           sonar-scanner -Dsonar.host.url=http://172.31.14.33:9000 -Dsonar.login=${sonarUser} -Dsonar.password=${sonarPass} -Dsonar.projectKey=${COMPONENT}
+       '''
+        }
     }
+ }
 
 def codeChecks() {
     if ( env.BRANCH_NAME == "main" || TAG_NAME ==~ ".*" ) {
