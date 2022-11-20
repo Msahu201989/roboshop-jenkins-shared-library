@@ -35,30 +35,31 @@ def artifacts() {
 
        stage('Prepare  Artifacts') {
          if (env.APPTYPE == "nodejs") {
-           sh ***
+           sh '''
              npm install
              zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
-             ***
+             '''
          }
          if (env.APPTYPE == "java") {
-             sh ***
+             sh '''
                mvn clean package
                mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
-             ***
+             '''
 
          }
          if (env.APPTYPE == "python") {
-             sh ***
+             sh '''
                zip -r ${COMPONENT}-${TAG_NAME}.zip *.py ${COMPONENT}.ini requirements.txt
-                ***
+                '''
 
            }
 
          if (env.APPTYPE == "nginx") {
-             sh ***
+             sh '''
              cd static
               zip -r  ../${COMPONENT}-${TAG_NAME}.zip *
+              '''
          }
        }
 
