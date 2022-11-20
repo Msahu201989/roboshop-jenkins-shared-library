@@ -33,41 +33,43 @@ def codeChecks() {
 def artifacts() {
     if ( env.TAG_NAME ==~ ".*" ) {
 
-       stage('Prepare  Artifacts') {
-         if (env.APPTYPE == "nodejs") {
-           sh '''
+        stage('Prepare  Artifacts') {
+            if (env.APPTYPE == "nodejs") {
+                sh '''
              npm install
              zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
              '''
-         }
-         if (env.APPTYPE == "java") {
-             sh '''
+            }
+            if (env.APPTYPE == "java") {
+                sh '''
                mvn clean package
                mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
              '''
 
-         }
-         if (env.APPTYPE == "python") {
-             sh '''
+            }
+            if (env.APPTYPE == "python") {
+                sh '''
                zip -r ${COMPONENT}-${TAG_NAME}.zip *.py ${COMPONENT}.ini requirements.txt
                 '''
 
-           }
+            }
 
-         if (env.APPTYPE == "nginx") {
-             sh '''
+            if (env.APPTYPE == "nginx") {
+                sh '''
              cd static
               zip -r  ../${COMPONENT}-${TAG_NAME}.zip *
               '''
-         }
-       }
+            }
+        }
 
         stage('Publish Artifacts') {
-         sh '''
-          curl -v -u admin:admin123 --upload-file ${COMPONENT}-${TAG_NAME}.zip http://nexus.roboshop.internal:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+            withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
+                sh '''
+          curl -v -u ${nexususer}:${nexuspass} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://nexus.roboshop.internal:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
             '''
+            }
         }
-        }
+    }
     }
 
