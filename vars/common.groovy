@@ -64,7 +64,9 @@ def artifacts() {
        }
 
         stage('Publish Artifacts') {
-         echo 'Publish Artifacts'
+         sh '''
+          curl -v -u admin:admin123 --upload-file ${COMPONENT}-${TAG_NAME}.zip http://nexus.roboshop.internal:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+            '''
         }
         }
     }
