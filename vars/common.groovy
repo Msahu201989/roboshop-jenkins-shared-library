@@ -63,7 +63,7 @@ def artifacts() {
         }
             stage('Build Docker Image') {
                 sh '''
-               docker build 332775960109.dkr.ecr.us-east-1.amazonaws.com/cart:latest .
+               docker build -t 332775960109.dkr.ecr.us-east-1.amazonaws.com/cart:latest .
              '''
             }
 
