@@ -75,7 +75,7 @@ def artifacts() {
 
 
 def docker() {
-    if ( env.TAG_NAME ==~ ".*" ) {
+  //  if ( env.TAG_NAME ==~ ".*" ) {
 
         stage('Build Docker Image') {
            sh '''
@@ -90,5 +90,5 @@ ls            '''
             }
         }
     }
-}
+//}
 
