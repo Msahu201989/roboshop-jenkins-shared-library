@@ -31,7 +31,6 @@ def codeChecks() {
 }
 
 def artifacts() {
-//    if ( env.TAG_NAME ==~ ".*" ) {
 
         stage('Prepare  Artifacts') {
             if (env.APPTYPE == "nodejs") {
@@ -64,9 +63,18 @@ def artifacts() {
         }
             stage('Build Docker Image') {
                 sh '''
-               docker build .
+               docker build 332775960109.dkr.ecr.us-east-1.amazonaws.com/cart:${TAG_NAME} .
              '''
             }
+
+    if ( env.TAG_NAME ==~ ".*" ) {
+
+    stage('Publish Docker Image') {
+        sh '''
+     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 332775960109.dkr.ecr.us-east-1.amazonaws.com 
+     docker push 332775960109.dkr.ecr.us-east-1.amazonaws.com/cart:${TAG_NAME} 
+             '''
+    }
 
 
 //        stage('Publish Artifacts') {
@@ -76,7 +84,7 @@ def artifacts() {
 //            '''
 //            }
 //        }
-//    }
+   }
     }
 
 
