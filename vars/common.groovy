@@ -61,11 +61,11 @@ def artifacts() {
               '''
             }
         }
-            stage('Build Docker Image') {
-                sh '''
-               docker build -t 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:latest .
-             '''
-            }
+//            stage('Build Docker Image') {
+//                sh '''
+//               docker build -t 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:latest .
+//             '''
+//            }
 
     if ( env.TAG_NAME ==~ ".*" ) {
 
