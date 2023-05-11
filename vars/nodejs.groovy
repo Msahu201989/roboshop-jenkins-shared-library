@@ -5,11 +5,7 @@ def call() {
 
         stages {
 
-            stage('code quality') {
-                steps {
-                    echo 'code quality'
-                }
-            }
+         common.codeQuality()
 
             stage('Style checks') {
                 steps {
