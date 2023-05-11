@@ -1,41 +1,40 @@
-
-
-
-
-def codeQuality(){
-    stage('code quality') {
-            echo 'code quality'
-        }
+def codeQuality() {
+    stage('Code Quality') {
+        echo 'Code Quality'
     }
+}
+
 def codeChecks() {
-    if ( env.BRANCH_NAME == "main" || tag ==~ ".*" ) {
-        stage('Style checks') {
-            echo 'code Quality'
+    if ( env.BRANCH_NAME == "main" || env.TAG_NAME ==~ ".*" ) {
+
+        stage('Style Checks') {
+            echo 'Style Checks'
         }
 
-        stage('unit Tests') {
-            echo 'Unit Test'
-                }
-            }
+        stage('Unit Tests') {
+            echo 'Unit Tests'
+        }
 
     }
- def artifacts() {
-     if ( env.TAG_NAME ==~ ".*" ) {
-          stage('Download dependencies') {
-              echo 'Download Dependencies'
-          }
-            stage('Prepare Artifact') {
-                echo 'Prepare Artifacts'
-                }
-            }
+}
 
-            stage('Publish Artifact') {
-                echo 'Publish Artifact'
-                }
-            }
+def artifacts() {
+    if ( env.TAG_NAME ==~ ".*" ) {
 
+        stage('Download Dependencies') {
+            echo 'Download Dependencies'
+        }
 
+        stage('Prepare Artifacts') {
+            echo 'Prepare Artifacts'
+        }
 
+        stage('Publish Artifacts') {
+            echo 'Publish Artifacts'
+        }
+
+    }
+}
 
 //
 //
