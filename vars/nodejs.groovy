@@ -1,14 +1,13 @@
 def call() {
     node {
-
+        sh 'env'
          common.codeQuality()
+    if ( BRANCH_NAME == "main" || tag ==~ "*" ) {
+            stage('Style checks') {
+              echo 'code Quality'
+                }
+            }
 
-//            stage('Style checks') {
-//                steps {
-//                    echo 'style checks'
-//                }
-//            }
-//
 //            stage('unit Tests') {
 //                steps {
 //                    echo 'Unit Test'
