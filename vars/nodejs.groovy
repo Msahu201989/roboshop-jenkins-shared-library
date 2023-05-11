@@ -1,7 +1,7 @@
 def call() {
     node {
         try {
-            common.codeQuality()
+            common.codeQuality1()
             common.codeChecks()
             common.artifacts()
     }  catch (Exception e) {
