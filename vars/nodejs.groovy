@@ -2,44 +2,17 @@ def call() {
     node {
 
         if (!env.TAG_NAME) {
-            sh 'env'
+            enc.TAG_NAME = ""
+        }
          common.codeQuality()
-    if( BRANCH_NAME == "main" || tag ==~ ".*" ) {
-            stage('Style checks') {
-              echo 'code Quality'
-                }
-            }
+         common.CodeChecks()
+         common.artifacts()
         }
 
-//            stage('unit Tests') {
-//                steps {
-//                    echo 'Unit Test'
-//                }
-//            }
-//
-//            stage('Download dependencies') {
-//                when { tag "*" }
-//                steps {
-//                    echo 'Download Dependencies'
-//                }
-//            }
-//
-//            stage('Prepare Artifact') {
-//                when { tag "*" }
-//                steps {
-//                    echo 'Prepare Artifact'
-//                }
-//            }
-//
-//            stage('Publish Artifact') {
-//                when { tag "1.0.0" }
-//                steps {
-//                    echo 'Publish Artifact'
-//                }
-//            }
-//        }
+
+
    }
-}
+
 
 
 

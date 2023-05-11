@@ -7,6 +7,35 @@ def codeQuality(){
             echo 'code quality'
         }
     }
+def codeChecks() {
+    if ( BRANCH_NAME == "main" || tag ==~ ".*" ) {
+        stage('Style checks') {
+            echo 'code Quality'
+        }
+
+        stage('unit Tests') {
+            echo 'Unit Test'
+                }
+            }
+
+    }
+ def artifacts() {
+     if ( TAG_NAME ==~ ".*" ) {
+          stage('Download dependencies') {
+              echo 'Download Dependencies'
+          }
+            stage('Prepare Artifact') {
+                echo 'Prepare Artifacts'
+                }
+            }
+
+            stage('Publish Artifact') {
+                echo 'Publish Artifact'
+                }
+            }
+
+
+
 
 //
 //
