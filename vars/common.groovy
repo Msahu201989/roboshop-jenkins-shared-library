@@ -30,7 +30,7 @@ def codeChecks() {
 }
 
 def artifacts() {
-    if ( env.TAG_NAME ==~ ".*" ) {
+    if (env.TAG_NAME ==~ ".*") {
 
         stage('Prepare  Artifacts') {
             if (env.APPTYPE == "nodejs") {
@@ -61,14 +61,14 @@ def artifacts() {
               '''
             }
         }
-       stage('Publish Artifacts') {
+        stage('Publish Artifacts') {
             withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
-             sh '''
+                sh '''
          curl -v -u ${nexusUser}:${nexusPass} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://nexus.roboshop.internal:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
             '''
-          }
-       }
-}
+            }
+        }
+    }
 
 //
 //
@@ -147,7 +147,7 @@ def artifacts() {
 ////        sh '''
 ////     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 332775960109.dkr.ecr.us-east-1.amazonaws.com
 ////     docker tag 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:latest 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}
-////     docker push 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}
+//    docker push 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}
 ////             '''
 ////    }
 //
@@ -164,3 +164,4 @@ def artifacts() {
 //
 //
 //
+}
