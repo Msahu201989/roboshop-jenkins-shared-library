@@ -71,7 +71,7 @@ def artifacts() {
     }
 
 //
-//
+/
 //def codeCheckout() {
 // stage('code checkout') {
 //   sh 'find . | sed 1d |xargs rm -rf'
