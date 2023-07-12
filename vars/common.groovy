@@ -71,8 +71,8 @@ def artifacts() {
     }
 
 //
-/
-//def codeCheckout() {
+
+///def codeCheckout() {
 // stage('code checkout') {
 //   sh 'find . | sed 1d |xargs rm -rf'
 //   git branch: 'main', url: "https://github.com/Msahu201989/${COMPONENT}.git"
