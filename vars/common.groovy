@@ -53,11 +53,21 @@ def artifacts() {
             }
         }
 
-        stage('Publish Artifacts') {
-            withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
+        stage('Build Docker Image') {
+            sh '''
+              docker build -t 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:latest .
+              '''
+        }
+
+        if ( env.TAG_NAME ==~ ".*" ) {
+            stage('Publish Docker Image') {
+
                 sh '''
-          curl -v -u ${nexusUser}:${nexusPass} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://nexus.roboshop.internal:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
-        '''
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 332775960109.dkr.ecr.us-east-1.amazonaws.com
+        
+         docker tag 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:latest 633788536644.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}
+        docker push 332775960109.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}
+      '''
             }
         }
     }
