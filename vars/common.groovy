@@ -25,7 +25,7 @@ def codeChecks() {
     }
 }
 def artifacts() {
-    if ( env.TAG_NAME ==~ ".*" ) {
+    if ( env.TAG_NAME ==~ "cart" ) {
         stage('Prepare Artifacts') {
             if (env.APPTYPE == "nodejs") {
                 sh '''
