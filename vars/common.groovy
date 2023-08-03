@@ -52,6 +52,7 @@ def artifacts() {
         '''
             }
         }
+
         stage('Publish Artifacts') {
             withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
                 sh '''
@@ -63,22 +64,22 @@ def artifacts() {
 }
 
 
-def artifacts() {
-    if ( env.TAG_NAME ==~ ".*" ) {
-        //if ( env.TAG_NAME ==~ ".*" ) {
-
-        stage('Build Docker Image') {
-            sh '''
-        docker build .
-      '''
-        }
-        stage('Publish Artifacts') {
-            withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
-                sh '''
-ls        '''
-            }
-        }
-
-    }
-    //}
-}
+//def artifacts() {
+//    if ( env.TAG_NAME ==~ ".*" ) {
+//        //if ( env.TAG_NAME ==~ ".*" ) {
+//
+//        stage('Build Docker Image') {
+//            sh '''
+//        docker build .
+//      '''
+//        }
+//        stage('Publish Artifacts') {
+//            withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'nexusPass', usernameVariable: 'nexusUser')]) {
+//                sh '''
+//ls        '''
+//            }
+//        }
+//
+//    }
+//    //}
+//}
