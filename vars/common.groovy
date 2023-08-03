@@ -1,6 +1,6 @@
 def codeCheckout() {
     stage('Code Checkout') {
-       sh 'find . | sed 1d |xargs rm -rf'
+//       sh 'find . | sed 1d |xargs rm -rf'
         git branch: 'main', url: "https://github.com/Msahu201989/${COMPONENT}.git"
     }
 }
@@ -25,7 +25,7 @@ def codeChecks() {
     }
 }
 def artifacts() {
-//    if ( env.TAG_NAME ==~ ".*" ) {
+    if ( env.TAG_NAME ==~ ".*" ) {
         stage('Prepare Artifacts') {
             if (env.APPTYPE == "nodejs") {
                 sh '''
@@ -64,7 +64,7 @@ def artifacts() {
 
 
 def docker() {
-//    if ( env.TAG_NAME ==~ ".*" ) {
+    if ( env.TAG_NAME ==~ ".*" ) {
         //if ( env.TAG_NAME ==~ ".*" ) {
 
         stage('Build Docker Image') {
