@@ -1,7 +1,7 @@
 def codeCheckout() {
     stage('Code Checkout') {
         sh 'find . | sed 1d |xargs rm -rf'
-        git branch: 'main', url: "https://github.com/Msahu201989/${COMPONENT}.git"
+        git branch: 'main', url: "https://github.com/Msahu201989/cart.git"
     }
 }
 def codeQuality() {
@@ -25,7 +25,7 @@ def codeChecks() {
     }
 }
 def artifacts() {
-    if ( env.TAG_NAME ==~ ".*" ) {
+//    if ( env.TAG_NAME ==~ ".*" ) {
         stage('Prepare Artifacts') {
             if (env.APPTYPE == "nodejs") {
                 sh '''
