@@ -25,7 +25,7 @@ def codeChecks() {
     }
 }
 def artifacts() {
-//    if ( env.TAG_NAME ==~ ".*" ) {
+    if ( env.TAG_NAME ==~ ".*" ) {
         stage('Prepare Artifacts') {
             if (env.APPTYPE == "nodejs") {
                 sh '''
@@ -63,7 +63,7 @@ def artifacts() {
 }
 
 
-def docker() {
+def artifacts() {
     if ( env.TAG_NAME ==~ ".*" ) {
         //if ( env.TAG_NAME ==~ ".*" ) {
 
